@@ -1,36 +1,49 @@
-# Filmes (Flutter) — pratica/ da Atividade 3
+﻿# Atividade 3 — Filmes em Flutter
 
-App de catálogo de filmes em **Flutter**. Já roda; você completa os scaffolds (UI + estado) até `flutter test` ficar verde.
+Aluno: Rafael Corrêa Zart.
 
-## Rodar
+Catálogo com cinco filmes locais, cards com título, nota e ano, coração para
+favoritar, contador no cabeçalho e botão para limpar os favoritos.
+Não precisa de API, token ou emulador para executar no navegador.
+Os favoritos ficam em memória durante a execução do app.
+
+## Como rodar
+
+Com o Flutter instalado, execute nesta pasta:
+
 ```bash
 flutter pub get
-flutter run -d chrome   # abre no navegador — sem emulador, sem rede/token
+flutter run -d chrome
 ```
 
-## Testar (é o gate da Atividade 3)
+Para usar o Edge, execute `flutter run -d edge`. Se houver erro na conexão
+do depurador, execute `flutter run -d web-server --web-port=8080` e abra
+`http://localhost:8080` manualmente no navegador (depuração limitada nesse modo).
+
+## Como validar
+
 ```bash
-flutter test            # Ex1 (card) · Ex2 (favoritar/limpar) · Ex3 (seu teste) · checklist (auto-verificação)
-flutter analyze         # precisa ficar limpo
+flutter test
+flutter analyze
 ```
-Comece com os testes **vermelhos**; deixe-os **verdes**.
 
-> `test/checklist_test.dart` é sua **auto-verificação** (não edite): tudo verde = você terminou.
+Os testes de widgets verificam os cards e a integração entre favoritos, contador
+e limpeza. O teste em `test/favorites_test.dart` usa `ProviderContainer` para
+verificar o estado inicial, adição, remoção e limpeza de múltiplos favoritos.
+Os arquivos `app_test.dart` e `checklist_test.dart` foram preservados.
 
-## O que completar (🧑‍🏫 aula · 🧑‍💻 casa)
-| TASK | Arquivo | O quê | |
-|---|---|---|---|
-| 1 | `lib/widgets/movie_card.dart` | compor o card (título + ⭐ nota + ano) | 🧑‍🏫 |
-| 2 | `lib/state/favorites.dart` | `favoritesProvider` (`toggle` + `clear`) | 🧑‍🏫 |
-| 3 | `lib/widgets/movie_card.dart` | coração favoritando (`ConsumerWidget` + `ref`) | 🧑‍💻 |
-| 4 | `lib/screens/home_screen.dart` | contador `♥ N` no header | 🧑‍💻 |
-| 5 | `lib/screens/home_screen.dart` | botão **limpar** favoritos | 🧑‍💻 |
-| 6 | `test/favorites_test.dart` | **você escreve** um teste do provider | 🧑‍💻 |
+## Por que usar um provider?
 
-Veja o `guia-passo-a-passo.md` (na pasta do exercício) e o `enunciado.md` (rubrica).
+O Riverpod mantém os favoritos em uma única fonte de estado, acessível pelos
+cards e pelo cabeçalho sem passar dados e callbacks por cada widget intermediário
+(prop drilling). Com `ref.watch`, a interface acompanha as mudanças do provider;
+com `ref.read(favoritesProvider.notifier)`, os botões executam as ações de
+favoritar e limpar. Assim, novas telas podem consumir o mesmo estado sem mudar
+os construtores de toda a árvore, e as regras podem ser testadas isoladamente
+com `ProviderContainer`.
 
 ## Entrega
-Fork + PR no repo público; link no Canvas. O **J.A.R.V.I.S.** roda `flutter test` no seu PR.
-- ✏️ **Edite os arquivos dentro de `exercicios/03-flutter-ui-estado/pratica/` (no lugar)** — **não crie subpasta** `aluno-.../`. O autograder roda `flutter test` nessa pasta.
 
-> **Não comite** `.dart_tool/`, `build/`, `pubspec.lock` (já no `.gitignore`).
+As alterações estão em `exercicios/03-flutter-ui-estado/pratica/`.
+A entrega é por Pull Request, com o link informado no Canvas.
+Não incluir `.dart_tool/`, `build/` ou `pubspec.lock` no commit.
