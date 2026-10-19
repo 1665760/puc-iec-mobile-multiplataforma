@@ -58,9 +58,10 @@ Em `vite.config.ts`, dentro de `workbox.runtimeCaching`, escreva **duas regras**
 | (a) | API de filmes | **NetworkFirst** | desiste da rede em **3 s**; `cacheName: 'tmdb-api'`; até **50** entradas, **1 dia** |
 | (b) | Pôsteres | **CacheFirst** | `cacheName: 'tmdb-images'`; até **200** entradas, **7 dias** |
 
-**Duas pegadinhas reais:**
-1. O host dos pôsteres **não é o mesmo da API** — descubra qual é no DevTools → Network.
-2. Imagens de outra origem chegam como resposta **opaca (status 0)**; por padrão o Workbox não as guarda. Pesquise `cacheableResponse`.
+**Dois conceitos que você vai usar aqui** (cada regra do Workbox casa por **URL**, então você precisa saber de onde vem cada recurso):
+
+1. **De qual host vem cada tipo de recurso?** A API e os pôsteres não ficam no mesmo servidor. Para descobrir: DevTools → **Network** → recarregue → filtre por **Fetch/XHR** (API) e depois por **Img** (pôsteres) → olhe a coluna **Domain** (ou clique numa requisição → *Headers → Request URL*). Se o `urlPattern` não casar com essa URL, a regra nunca dispara e o cache fica vazio — esse é o primeiro sintoma para diagnosticar.
+2. **Resposta opaca (status 0).** Uma `<img>` de outra origem, sem CORS, é carregada como resposta *opaca*: o navegador a exibe, mas o código não consegue ler o status. Por padrão o Workbox só guarda respostas `200`, então é preciso dizer explicitamente quais status aceitar. Leia sobre `cacheableResponse` na doc do Workbox (link abaixo) e decida o que faz sentido para pôsteres.
 
 **Como conferir:** `npm run build && npm run preview` (o SW **não roda** no `npm run dev`) → DevTools → Application → **Cache Storage**: devem existir `tmdb-api` e `tmdb-images` com itens.
 
