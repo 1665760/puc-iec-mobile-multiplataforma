@@ -8,3 +8,5 @@ pubspec.lock
 *.iml
 .idea/
 .vscode/
+firebase.local.json
+.env.local
