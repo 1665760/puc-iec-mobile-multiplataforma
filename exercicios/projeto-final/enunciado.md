@@ -3,7 +3,7 @@
 **Disciplina:** Arquitetura de Aplicações Móveis e Multiplataforma
 **Grupo:** 3 a 4 alunos · **Valor:** 30 pts
 **Prazo final:** a **próxima aula (Aula 6)** — ver Canvas
-**Apresentação:** demonstração técnica ao vivo (10min + 5min de perguntas), na Aula 6
+**Apresentação:** demonstração técnica ao vivo de **até 20 minutos** (incluindo perguntas), na Aula 6
 **Entrega:** a **URL do repositório do grupo** no GitHub, colada no Canvas
 
 ---
