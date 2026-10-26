@@ -1,153 +1,104 @@
 # Projeto Final em Grupo (30 pts)
 
 **Disciplina:** Arquitetura de Aplicações Móveis e Multiplataforma
-**Modalidade:** grupo (3 a 4 alunos, auto-organizados)
-**Entrega:** PR no fork do repo público — prazo: ver Canvas
-**Apresentação:** ao vivo, com demo funcionando (10min + 5min Q&A) — data: ver Canvas
+**Grupo:** 3 a 4 alunos · **Valor:** 30 pts
+**Prazo final:** a **próxima aula (Aula 6)** — ver Canvas
+**Apresentação:** demonstração técnica ao vivo (10min + 5min de perguntas), na Aula 6
+**Entrega:** a **URL do repositório do grupo** no GitHub, colada no Canvas
 
 ---
 
 ## O que é
 
-O grupo constrói **um app mobile** em **Flutter, React Native ou KMP Compose Multiplatform** (os 3 que
-vocês usaram nas Atividades 2, 3 e 5) e o entrega por **Pull Request**. O app tem que ser **bem
-arquitetado, funcionar de verdade e ser agradável de usar** — não basta "funcionar".
+O grupo constrói **um app mobile** em **Flutter, React Native ou KMP Compose Multiplatform** (os que vocês
+usaram nas Atividades 2, 3 e 5) com **5 features** e o apresenta ao vivo.
 
-**Tema: livre.** Vocês podem:
+**Feature = uma funcionalidade que o usuário vê e usa.** Exemplos:
 
-- **(A) escolher um dos 5 temas prontos** (PokeAPI, Rick and Morty, TheMealDB, TheCocktailDB, Studio Ghibli), com **skeleton de ponto de partida**; ou
-- **(B) escolher qualquer tema que o grupo quiser** (um app de hábitos, receitas, clima, cinema, estudo, viagem, o que for) e construir do zero.
-
-As duas opções têm **a mesma rubrica e o mesmo nível de exigência**. O skeleton é só um atalho — usar
-ele **não dá ponto a mais** e o visual dele é básico de propósito: a nota de UI/UX é do **seu** trabalho.
-
-## O que o app precisa ter
-
-### 1. Funcionalidade (mínimo)
-
-| # | Requisito | Detalhe |
+| # | Feature | Exemplo (app de filmes) |
 |---|---|---|
-| 1 | Lista de dados reais | Tela inicial busca dados de uma **API ou fonte real** e mostra uma lista |
-| 2 | Detalhe | Tocar num item abre uma tela de detalhe com mais informação |
-| 3 | Busca | Busca ou filtro pelo usuário |
-| 4 | Persistência local | Algo que o usuário escolhe (favoritos, histórico, preferências) **sobrevive a fechar o app** |
-| 5 | Estados de erro | **Carregando**, **vazio** e **erro/sem internet** tratados com mensagem clara — nunca tela branca ou crash |
+| 1 | **Lista** de dados reais | tela inicial com os filmes populares vindos de uma API |
+| 2 | **Detalhe** | tocar num filme abre sinopse, nota e elenco |
+| 3 | **Busca** | campo de busca que filtra a lista |
+| 4 | **Filtro / categoria** | chips de gênero que refinam a lista |
+| 5 | **Favoritos** que sobrevivem a fechar o app | marcar ★ e ver na aba "Favoritos" |
 
-### 2. UI/UX — o mínimo pra ficar bonito (checklist)
+Além das 5 features, o app trata **carregando, vazio e erro/sem internet** (mensagem clara, nunca tela branca).
 
-Cada item abaixo é verificado na demo e nos **screenshots do README** (pelo menos 3):
+## Escolham um dos dois caminhos
 
-- **Design tokens**: cores, tipografia e espaçamentos definidos **em um lugar só** (tema/`ThemeData`/`MaterialTheme`/arquivo de tema), não valores soltos pelas telas.
-- **Tema claro e escuro** funcionando.
-- **Loading com skeleton/shimmer** (ou placeholder equivalente), não só um spinner solto no meio da tela.
-- **Imagens** com placeholder enquanto carregam e fallback se falharem.
-- **Layout responsivo**: funciona em celular e em **paisagem/tela maior** sem cortar nem esticar feio.
-- **Acessibilidade básica**: contraste legível, alvo de toque ≥ 48dp, ícones com descrição (label/`contentDescription`).
-- **Identidade**: **ícone do app e splash próprios** (não o padrão do framework) e navegação consistente.
-- **Sem cara de protótipo**: alinhamentos, hierarquia visual (título/subtítulo), componentes reutilizáveis.
+**Opção A — um dos 5 temas prontos.** Todos têm **as mesmas 5 features**; muda só a API e o visual.
+Cada tema tem **skeleton** de ponto de partida em `skeletons/<tema>/<framework>/pratica/`
+(com `README.md` de setup e os `// TODO` das features).
 
-### 3. Arquitetura + ADR
+| # | Tema | Filtro natural | Tipo do id |
+|---|------|---|---|
+| 1 | **PokeAPI** — Pokédex | `type` | `Int` |
+| 2 | **Rick and Morty** — personagens | `status` | `Int` |
+| 3 | **TheMealDB** — receitas | `c` (categoria) | `String` |
+| 4 | **TheCocktailDB** — drinks | `c` (categoria) | `String` |
+| 5 | **Studio Ghibli** — filmes | `director` | `String` |
 
-- **Camadas separadas**: dados (API/storage), estado/lógica e UI — sem fetch dentro do widget/componente.
-- **Gerenciamento de estado** coerente com o framework (Riverpod/Bloc/Provider, Zustand/Context/React Query, ViewModel/StateFlow…).
-- **ADR curto (`ADR.md`, ~1 página)** na pasta do app: por que esse framework, por que esse gerenciador de estado, que alternativa vocês descartaram e por quê (mesmo formato da Atividade 1). Mínimo de 600 caracteres.
+Detalhes de cada API em [`temas/`](./temas/).
 
-### 4. Testes
+**Opção B — a sua própria API / tema.** Qualquer tema (hábitos, clima, estudo, viagem…), desde que:
 
-Escrevam **testes automatizados próprios** (unitários e/ou de widget/componente — **pelo menos 3 casos**)
-para a lógica que vocês criaram. **Não existe teste "que o grupo precisa passar"**: a nota olha *o que*
-vocês decidiram testar e se faz sentido. Se partirem de um skeleton, os `flows/` do Maestro vêm de
-brinde **para vocês se autoverificarem** — rodar é opcional e não vale ponto.
+1. tenha **no mínimo as mesmas 5 features** da tabela acima (adaptadas ao seu tema);
+2. use **dados reais** (API pública, JSON público ou serviço gratuito — não vale lista fixa no código);
+3. seja **gratuita**: sem cartão, sem cadastro pago; chave grátis é ok, mas **nunca commitem a chave**.
 
-## Opção A — temas prontos (skeletons)
+## Não vale pegar o mesmo trabalho — alinhem entre vocês
 
-| # | Tema | API retorna | Filtro natural | Tipo do id |
-|---|------|---|---|---|
-| 1 | **PokeAPI** — Pokédex | nome, sprite, tipos, altura/peso | `type` | `Int` |
-| 2 | **Rick and Morty** | nome, status, espécie, gênero | `status` | `Int` |
-| 3 | **TheMealDB** — receitas | nome, categoria, área, foto | `c` (categoria) | `String` |
-| 4 | **TheCocktailDB** — drinks | nome, categoria, copo, alcoólico | `c` (categoria) | `String` |
-| 5 | **Studio Ghibli** — filmes | título, diretor, ano, duração | `director` | `String` (UUID) |
+Cada combinação **tema + framework** (Opção A) é de **um grupo só**, e temas livres (Opção B) devem ser
+diferentes entre si. Para reservar, o grupo abre **uma issue** no repo da disciplina:
+`Grupo <nomes> — <tema> + <framework>` (Opção B: `<seu tema> + <framework>` com 2 linhas sobre o app).
+Vale a **ordem de chegada** (horário da issue). Antes de abrir a sua, **olhem as issues existentes**.
 
-Cada tema tem uma pasta em [`temas/`](./temas/) (endpoints, gotchas) e cada combinação
-tema+framework tem um skeleton em `skeletons/<tema>/<framework>/pratica/` com `README.md` de setup.
-No skeleton a tela e a lógica das 5 features já estão estruturadas com `// TODO` — **os requisitos 4
-(persistência), 5 (estados) e todo o checklist de UI/UX continuam sendo trabalho do grupo.**
+## Para o app ficar bonito (o mínimo)
 
-**Exclusividade (só Opção A):** cada combinação **tema + framework** de skeleton é de **um grupo só**.
-**Reserva:** abram uma **issue** `Grupo <nomes> — <tema> + <framework>`; vale a ordem de chegada
-(timestamp). Se a combinação já foi reservada, escolham outra (pode repetir o tema **ou** o framework).
+- **Design tokens**: cores, tipografia e espaçamento definidos **em um lugar só** (tema)
+- **Tema claro e escuro**
+- **Loading com skeleton**, não só um spinner solto
+- **Imagens** com placeholder e fallback
+- **Responsivo**: celular e paisagem
+- **Acessibilidade básica**: contraste, alvo de toque ≥ 48dp, ícones com descrição
+- **Ícone e splash próprios** do app
 
-## Opção B — tema livre
+## Arquitetura, ADR e testes
 
-Qualquer tema vale, com 3 condições:
+- **Camadas separadas**: dados (API/storage), estado/lógica e UI — sem fetch dentro do widget/componente
+- **`ADR.md`** (~1 página): por que esse framework, por que esse gerenciador de estado, **que alternativa descartaram e por quê**
+- **Testes próprios** (pelo menos 3 casos) para a lógica que vocês criaram — vale **o que decidiram testar**, não existe teste "pra passar"
+- **`README.md`** do app: o que faz · **como rodar** (com o `cd` da pasta) · **pelo menos 3 screenshots** · link do `ADR.md`
 
-1. **Custo zero para todos**: API/dados **gratuitos**, sem cartão e sem cadastro pago. Chave grátis é ok, mas **nunca commitem a chave** (usem `local.properties`/`.env` fora do git e expliquem no README como obter a sua).
-2. **Dados reais** (API pública, JSON público ou serviço gratuito) — não vale lista hardcoded no código.
-3. **Registrem na issue** `Grupo <nomes> — <tema livre> + <framework>` com 2 linhas: o que o app faz e qual a fonte de dados. Não precisa de aprovação; é para eu acompanhar e para evitar surpresa.
+## Como entregar
 
-Não há limite de combinações para tema livre. Exige mais trabalho de arranque (sem skeleton) — a
-rubrica **não** dá bônus por isso; escolham pelo que o grupo quer construir.
+1. **Um repositório GitHub do grupo** (fork do repo da disciplina ou repo novo). Público — ou privado com o
+   professor (`jacksonsmith`) como *collaborator*. Todos os integrantes entram como *collaborators*.
+2. **Trabalhem em branches e PRs internos** no repo do grupo — a **Contribuição individual** olha os commits
+   e PRs de **cada** integrante. Tudo commitado por uma pessoa só = o grupo perde esses pontos.
+3. **O app fica numa pasta** do repo, com `README.md` e `ADR.md`. (Se usarem skeleton, copiem/editem o da Opção A.)
+4. **Abram o repo cedo** e deem push com frequência — o professor acompanha e avisa de problema antes do prazo.
+5. **Colem a URL do repo no Canvas** até o prazo e **apresentem na Aula 6**.
 
-## Entrega — passo a passo
-
-**0. Grupo + escolha** — formem o grupo (3-4 pessoas), decidam **tema (A ou B) + framework** e
-**registrem via issue** (acima).
-
-**1. Fork do grupo** — **UM** integrante faz fork do repo público da disciplina: esse fork é o
-**repo do grupo** e é dele que sai o PR final. Os outros **não criam fork próprio** — todos clonam o
-fork do grupo.
-
-**2. Trabalhar em grupo** — cada integrante clona o **fork do grupo**, cria uma branch com a sua parte
-e abre **PR interno → `main` do fork do grupo**. O grupo revisa e mergeia. É assim que cada um acumula
-commits/PRs na própria conta — exatamente o que **Contribuição individual** avalia. (Dica: o dono do
-fork adiciona os colegas como *collaborators* em Settings → Collaborators.) Commits todos na conta de
-uma pessoa só = grupo perde esses pontos.
-
-**3. Onde fica o app** — o PR deve tocar **uma única pasta**:
-
-- **Tema livre (B):** `exercicios/projeto-final/entregas/<nome-do-grupo>/` (crie a pasta; o app inteiro, o `README.md` e o `ADR.md` ficam aqui).
-- **Skeleton (A):** `exercicios/projeto-final/skeletons/<tema>/<framework>/pratica/` (edite no lugar; coloque `README.md`/`ADR.md` dentro dela). Comecem pelo `README.md` do skeleton.
-
-**4. `README.md` do app** (obrigatório): o que o app faz · **como rodar** (passo a passo, com o `cd`
-da pasta) · **pelo menos 3 screenshots** (`![...](...)`) · link para o `ADR.md` · como obter chave de API, se houver.
-
-**5. Abrir o PR final** — do `main` do **fork do grupo** → repo da disciplina. **Não há autograder
-neste projeto**: o professor clona o PR, builda, roda o app e avalia pela rubrica abaixo.
-
-> **Critério eliminatório:** se o app **não builda**, ele não pode ser demonstrado — Funcionalidade
-> fica **zerada**. Rodem o build local antes de abrir o PR
+> **Critério eliminatório:** se o app **não builda**, ele não pode ser demonstrado — Funcionalidade fica
+> **zerada**. Rodem o build local antes de entregar
 > (`flutter build apk --debug` · `./gradlew :androidApp:assembleDebug` · `npx expo prebuild` + `./gradlew assembleDebug`).
 
-**6. Iterar** — podem dar push na mesma branch até o prazo; o PR aberto cedo permite ao professor
-avisar de problemas (build, README, ADR) antes da entrega.
-
-**7. Apresentação** — ao vivo, com demo funcionando (10min + 5min Q&A), data: ver Canvas.
-
-## Marcos sugeridos (o projeto dura 2 semanas)
-
-Não há apresentação intermediária — o **PR aberto cedo** é o checkpoint (sem nota; o professor olha
-o PR e avisa se algo está fora do esperado).
-
-| Quando | Marco | Como comprovar |
-|---|---|---|
-| Semana 1 (início) | Grupo formado + tema e framework registrados | Issue aberta |
-| Meio do caminho | App builda, lista + detalhe funcionando | PR final aberto (pode ser *draft*) |
-| Semana 2 | Persistência, estados de erro e checklist de UI/UX; README + ADR; ensaio da demo | PR final atualizado |
-| Fim | Apresentação ao vivo (10min + 5min Q&A) | App rodando |
+**Não há autograder:** o professor clona o repo, builda, roda o app e avalia pela rubrica.
 
 ## Rubrica (30 pts)
 
 | Critério | Pts |
 |---|---|
-| **UI/UX** — checklist da seção 2 + demo | 8 |
+| **UI/UX** — o checklist "app bonito" + demo | 8 |
 | **Arquitetura + ADR** — camadas, estado, coerência com o ADR | 7 |
-| **Funcionalidade** — 5 requisitos, estados de erro, build passando | 6 |
-| **Apresentação + demo ao vivo + Q&A** | 4 |
-| **Contribuição individual** — commits e PRs internos por integrante | 3 |
+| **Funcionalidade** — as 5 features, estados de erro, build passando | 6 |
+| **Apresentação** — demonstração técnica ao vivo + perguntas | 4 |
+| **Contribuição individual** — commits e PRs por integrante | 3 |
 | **Qualidade** — testes próprios (≥ 3 casos) + README reprodutível | 2 |
 
-A nota é lançada no Canvas depois da apresentação. A nota individual pode diferir da nota do grupo
-conforme a Contribuição individual.
+A nota é lançada no Canvas depois da apresentação. A nota individual pode diferir da nota do grupo conforme
+a Contribuição individual.
 
 Dúvidas: Teams da turma ou jackson.96@gmail.com.

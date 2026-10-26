@@ -56,7 +56,6 @@ O build precisa passar — **critério eliminatório** (app que não builda não
 flutter build apk --debug
 ```
 
-Entrega em grupo: 1 fork por grupo; integrantes trabalham via PRs internos no fork do grupo; o PR
-final (fork → repo da disciplina) é avaliado pelo professor (sem autograder neste projeto).
-Adicionem `README.md` (com ≥ 3 screenshots) e `ADR.md` nesta pasta. Detalhes no
+Entrega em grupo: **um repositório do grupo** (todos como *collaborators*), branches + PRs internos; a **URL do repo** vai no Canvas.
+Adicionem `README.md` (com ≥ 3 screenshots) e `ADR.md` nesta pasta. Sem autograder: o professor clona, builda e avalia. Detalhes no
 [`enunciado.md`](../../../../enunciado.md).
