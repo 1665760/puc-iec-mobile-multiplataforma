@@ -54,15 +54,19 @@ diferentes entre si. Para reservar, o grupo abre **uma issue** no repo da discip
 `Grupo <nomes> — <tema> + <framework>` (Opção B: `<seu tema> + <framework>` com 2 linhas sobre o app).
 Vale a **ordem de chegada** (horário da issue). Antes de abrir a sua, **olhem as issues existentes**.
 
-## Para o app ficar bonito (o mínimo)
+## Dicas para um app bonito (recomendado)
 
-- **Design tokens**: cores, tipografia e espaçamento definidos **em um lugar só** (tema)
+O visual é **de vocês**: façam do jeito que quiserem. O professor avalia na demo se o app está **agradável e
+consistente**. Algumas dicas que ajudam:
+
+- Defina **cores, tipografia e espaçamento em um lugar só** (tema)
 - **Tema claro e escuro**
-- **Loading com skeleton**, não só um spinner solto
-- **Imagens** com placeholder e fallback
-- **Responsivo**: celular e paisagem
-- **Acessibilidade básica**: contraste, alvo de toque ≥ 48dp, ícones com descrição
-- **Ícone e splash próprios** do app
+- **Skeleton/shimmer** no lugar do spinner solto · **placeholder** e fallback nas imagens
+- Teste em **paisagem** e com fonte maior · **ícone e splash** próprios
+- **Design systems e bibliotecas** que aceleram:
+  - **Flutter:** [Material 3](https://m3.material.io) · [`google_fonts`](https://pub.dev/packages/google_fonts) · [`shimmer`](https://pub.dev/packages/shimmer)
+  - **React Native:** [React Native Paper](https://callstack.github.io/react-native-paper/) · [`expo-image`](https://docs.expo.dev/versions/latest/sdk/image/)
+  - **KMP:** [Material 3 do Compose](https://m3.material.io) · [Coil](https://coil-kt.github.io/coil/)
 
 ## Arquitetura, ADR e testes
 
@@ -91,7 +95,7 @@ Vale a **ordem de chegada** (horário da issue). Antes de abrir a sua, **olhem a
 
 | Critério | Pts |
 |---|---|
-| **UI/UX** — o checklist "app bonito" + demo | 8 |
+| **UI/UX** — visual agradável e consistente (avaliado na demo) | 8 |
 | **Arquitetura + ADR** — camadas, estado, coerência com o ADR | 7 |
 | **Funcionalidade** — as 5 features, estados de erro, build passando | 6 |
 | **Apresentação** — demonstração técnica ao vivo + perguntas | 4 |
