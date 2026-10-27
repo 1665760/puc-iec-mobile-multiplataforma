@@ -29,8 +29,8 @@ ls shared/src/commonMain/kotlin/org/example/project    # deve listar App.kt e da
 4. Rode o `androidApp` num **emulador Android** (ou celular com depuração USB) → ▶
 
 > **Toolchain:** Android Studio Quail 2026.1.1+, JDK 17 — as mesmas versões verificadas em aula.
-> **Sem emulador?** Dá pra ver a UI pela Web: `./gradlew :webApp:wasmJsBrowserDevelopmentRun`. Mas o **critério
-> eliminatório** abaixo exige o Android SDK (o build do `androidApp`). iOS/Web não são exigidos.
+> **Sem emulador?** Use um **celular Android via USB** ou o **@Preview** do Android Studio (não precisa rodar o app). O **critério
+> eliminatório** abaixo exige o Android SDK (o build do `androidApp`). iOS/Web não são exigidos (a Web é experimental).
 > Passo a passo completo em [`pratica/README.md`](./pratica/README.md).
 
 ---

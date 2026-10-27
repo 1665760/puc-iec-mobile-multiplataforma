@@ -1,7 +1,7 @@
 # Projeto Final em Grupo (30 pts)
 
 **Disciplina:** Arquitetura de Aplicações Móveis e Multiplataforma
-**Grupo:** 3 a 4 alunos · **Valor:** 30 pts
+**Grupo:** 3 a 4 alunos (grupo maior pode, com pelo menos 1 feature por pessoa — avise o professor) · **Valor:** 30 pts
 **Prazo final:** a **próxima aula (Aula 6)** — ver Canvas
 **Apresentação:** demonstração técnica ao vivo de **até 20 minutos** (incluindo perguntas), na Aula 6
 **Entrega:** a **URL do repositório do grupo** no GitHub, colada no Canvas

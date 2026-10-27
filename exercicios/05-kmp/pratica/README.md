@@ -18,14 +18,14 @@ ls shared/src/commonMain/kotlin/org/example/project    # deve listar App.kt e da
 1. Copie `local.properties.example` para `local.properties`
 2. Gere o token em [themoviedb.org/settings/api](https://www.themoviedb.org/settings/api) (**API Read Access Token**, o JWT longo `eyJhbGc…`)
 3. Cole em `tmdb.token=` e ajuste `sdk.dir=` (o Android Studio costuma preencher sozinho)
-4. **Sync Gradle** (elefante 🐘 na barra) — o token vira `BuildKonfig.TMDB_TOKEN` em todas as plataformas
+4. **Sync Gradle** (elefante 🐘 na barra). Não achou o `local.properties`? Troque a visão do painel de arquivos de *Android* para *Project* — o token vira `BuildKonfig.TMDB_TOKEN` em todas as plataformas
 
 > `local.properties` está no `.gitignore` — **nunca commite o token**.
 
 ## 3. Rode
 
 - **Android (obrigatório):** dropdown `androidApp` + emulador (ou celular via USB) → ▶
-- **Web (opcional, rápido pra ver a UI):** `./gradlew :webApp:wasmJsBrowserDevelopmentRun`
+- **Web:** experimental — **não use pra esta atividade** (não foi validada). Sem emulador? use um **celular Android via USB** ou o **@Preview** do Android Studio.
 - **iOS (opcional, só Mac):** `open iosApp/iosApp.xcodeproj` e rode pelo Xcode
 
 Sem o token, o app mostra *"Token TMDB não configurado"* — é o estado esperado até o passo 2.
